@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>e-Card USP</title>
+  <title>e-Card USP</title> 
   <link rel="manifest" href="manifest.json">
   <style>
     body {
@@ -14,57 +14,209 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
+      min-height: 102vh;
+      color: black;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---------------- Barra estilo iPhone ---------------- */
+    .topbar {
+      width: 100%;
+      height: 40px;
+      background-color: #ff9e1b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      box-sizing: border-box;
+    }
+
+    .topbar-left, .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-center {
+      font-weight: bold;
+      font-size: 16px;
       color: black;
     }
-    .logo {
-      margin-top: 20px;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      fill: black;
+      cursor: pointer;
     }
-    .logo img {
-      width: 200px;
-      height: auto;
-    }
-    h2 {
-      margin: 5px 0;
-    }
-    .foto {
-      margin: 20px 0;
-    }
-    .foto img {
-      width: 140px;
-      height: 170px;
-      border-radius: 2%;
-    }
+
+    /* ---------------- Logo e foto ---------------- */
+    .logo { margin-top: 20px; }
+    .logo img { width: 200px; height: auto; }
+
+    .foto { margin: 15px 0; }
+    .foto img { width: 140px; height: 185px; border-radius: 2%; }
+
+    /* ---------------- QR Code ---------------- */
     .qrcode {
       margin-top: 20px;
+      position: relative;
+      display: inline-block;
+      border: 0px solid #c5721e;
+      border-radius: 0;
+      padding: 10px;
+      background-color: #fff;
     }
     .qrcode img {
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border-radius: 0;
     }
-    .expiry {
-      font-size: 12px;
-      margin-top: 10px;
+    .qrcode img:hover { transform: scale(1.05); }
+
+    .expiry { font-size: 12px; margin-top: 5px; color: black; }
+
+    /* Overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px;
+      text-align: center;
+      z-index: 1001;
+      box-shadow: 0 0px 0px rgba(0,0,0,0);
+      animation: zoomIn 0.3s ease;
+    }
+    .modal img { width: 300px; height: 300px; margin-top: 10px; border-radius: 0; }
+    .modal p { color: white; font-size: 14px; margin: 8px 0 6px 0; font-weight: normal; }
+
+    /* Faculdade centralizada */
+    #faculdade {
+      text-align: center;
+      margin: 0;
+    }
+    #faculdade strong {
+      display: block;
+      line-height: 1.2;
+    }
+
+    p, h2, h3 { margin: 4px 0; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     }
   </style>
 </head>
 <body>
+
+  <!-- Barra superior estilo iPhone -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2V19.2c0-3.2-6.4-4.8-9.6-4.8z"/>
+      </svg>
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M3 6h18v2.4H3V6zm0 4.8h18v2.4H3V10.8zm0 4.8h18V18H3v-2.4z"/>
+      </svg>
+    </div>
+    <div class="topbar-center">e-Card</div>
+    <div class="topbar-right">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M3 4h1.5v16H3V4zm3 0h1v16h-1V4zm3 0h2v16H9V4zm4 0h1v16h-1V4zm2 0h2v16h-2V4zm4 0h1v16h-1V4zm2 0h1.5v16H21V4z"/>
+      </svg>
+    </div>
+  </div>
+
   <div class="logo">
     <img src="logo_usp.png" alt="USP Logo">
   </div>
-  <h2>Universidade de São Paulo</h2>
   <h3>ALUNO</h3>
+
   <div class="foto">
-    <img src="https://uploads.onecompiler.io/43xg7568a/43xg6cw6u/Captura%20de%20tela%202025-09-22%20111417.png" alt="Foto do Aluno">
+    <img src="https://github.com/anacrocha49-ux/ecard-gabi/blob/0db7e0c84462f54b7d37a9f3190518ec44694e91/imagem%20gabi.jpg" alt="Foto do Aluno">
   </div>
-  <p><strong>Ana Caroline Cardoso da Rocha</strong></p>
-  <p>16852675</p>
-  <p>Faculdade de Filosofia, Letras e Ciências Humanas</p>
-  <p><strong>GRADUAÇÃO</strong></p>
+
+  <p><strong>Thifany Gabrielly da Silva Cariri</strong></p>
+  <p>15517817</p>
+  <p id="faculdade"></p>
+  <p>GRADUAÇÃO</p>
+
+  <!-- QR code -->
   <div class="qrcode">
-    <img src="https://uploads.onecompiler.io/43xg7568a/43xg6cw6u/Captura%20de%20tela%202025-09-22%20111559.png" alt="QR Code">
+    <img id="qrcode" src="https://uploads.onecompiler.io/43xg7568a/43xg6cw6u/Captura%20de%20tela%202025-09-22%20111559.png" alt="QR Code">
+    <div class="modal" id="qrModal">
+      <p id="modalExpiry"></p>
+      <img src="" alt="QR Ampliado" id="qrModalImg">
+    </div>
   </div>
-  <p class="expiry">Código QR expira em 03/10/2025 23:59</p>
+  <p class="expiry" id="expiryText"></p>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <script>
+    const nomeFaculdade = [
+      "Faculdade de Filosofia, Letras e Ciências",
+      "Humanas"
+    ];
+
+    document.getElementById("faculdade").innerHTML =
+      `<strong>${nomeFaculdade[0]}</strong><strong>${nomeFaculdade[1]}</strong>`;
+
+    function textoExpiracaoHoje() {
+      const hoje = new Date();
+      const d = String(hoje.getDate()).padStart(2,'0');
+      const m = String(hoje.getMonth()+1).padStart(2,'0');
+      const a = hoje.getFullYear();
+      return `Código QR expira em ${d}/${m}/${a} 23:59`;
+    }
+
+    document.getElementById("expiryText").textContent = textoExpiracaoHoje();
+
+    const qrImg = document.getElementById("qrcode");
+    const modal = document.getElementById("qrModal");
+    const modalImg = document.getElementById("qrModalImg");
+    const modalExpiry = document.getElementById("modalExpiry");
+    const overlay = document.getElementById("overlay");
+
+    qrImg.addEventListener("click", () => {
+      modalImg.src = qrImg.src;
+      modalExpiry.textContent = textoExpiracaoHoje();
+      modal.style.display = "block";
+      overlay.style.display = "block";
+    });
+
+    overlay.addEventListener("click", () => {
+      modal.style.display = "none";
+      overlay.style.display = "none";
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.style.display = "none";
+        overlay.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
