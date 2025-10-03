@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-Card USP</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ff9e1b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      color: black;
+    }
+    .logo {
+      margin-top: 20px;
+    }
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
+    h2 {
+      margin: 5px 0;
+    }
+    .foto {
+      margin: 20px 0;
+    }
+    .foto img {
+      width: 140px;
+      height: 170px;
+      border-radius: 2%;
+    }
+    .qrcode {
+      margin-top: 20px;
+    }
+    .qrcode img {
+      width: 200px;
+      height: 200px;
+    }
+    .expiry {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="logo_usp.png" alt="USP Logo">
+  </div>
+  <h2>Universidade de São Paulo</h2>
+  <h3>ALUNO</h3>
+  <div class="foto">
+    <img src="https://uploads.onecompiler.io/43xg7568a/43xg6cw6u/Captura%20de%20tela%202025-09-22%20111417.png" alt="Foto do Aluno">
+  </div>
+  <p><strong>Ana Caroline Cardoso da Rocha</strong></p>
+  <p>16852675</p>
+  <p>Faculdade de Filosofia, Letras e Ciências Humanas</p>
+  <p><strong>GRADUAÇÃO</strong></p>
+  <div class="qrcode">
+    <img src="https://uploads.onecompiler.io/43xg7568a/43xg6cw6u/Captura%20de%20tela%202025-09-22%20111559.png" alt="QR Code">
+  </div>
+  <p class="expiry">Código QR expira em 03/10/2025 23:59</p>
+</body>
+</html>
